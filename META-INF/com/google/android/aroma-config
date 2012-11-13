@@ -1,0 +1,359 @@
+### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### FILE INFO:
+#
+# AROMA Installer 2.51 - AROMA Installer Test Script Configuration
+#       (c) 2011-2012 by Ahmad Amarullah
+#           amarullz - xda-developers
+#           http://www.amarullz.com/
+#
+#       Binary Version  : 2.51
+#       Binary Codename : Edelweis
+#       By Dsexton702/TeamAcid
+#
+### INFO:
+#
+# * AROMA Resource Dir  = META-INF/com/google/android/aroma
+#
+# * AROMA Temporary Dir = /tmp/aroma/
+#
+# * About Icon          = @alert - show <AROMA Resource Dir>/icons/alert.png
+#                         or if theme used it will find <themedir>/icon.alert.png
+#                         you can still access it via "icons/alert"
+#
+# * dp                  = Device Pixelate. WVGA/QHD = 3, HVGA = 2.
+#                         dp calculated with = round(min(width,height) / 160)
+#
+###
+
+##
+# Fix Colorspace Issue
+#
+# For device which have a problem with color ( not display the correct color )
+# try to set "force_colorspace" with ini_set. It may caused by wrong framebuffer
+# information that passed by kernel into framebuffer device.
+#
+# You can use one of following values:
+#   "rgba", "abgr", "argb", "bgra"
+#
+# NOTE: It must be in top most script, or you will got the color flicker
+#
+# ini_set("force_colorspace","bgra"); # rgba is perfect but does not show up at all half the time
+#
+#### NOTE >> THIS VERSION DOESN'T NEED ANY CALIBRATION DATA :)
+
+##[ DEPRECATED - WONT DO ANYTHING FOR THIS VERSION ]
+if read("/sdcard/aroma.cal") != "" then
+ calibrate_matrix(
+  file_getprop("/sdcard/aroma.cal", "val1")  ,  file_getprop("/sdcard/aroma.cal", "val2")  ,  file_getprop("/sdcard/aroma.cal", "val3") , file_getprop("/sdcard/aroma.cal", "val4") , file_getprop("/sdcard/aroma.cal", "val5") , file_getprop("/sdcard/aroma.cal", "val6") , file_getprop("/sdcard/aroma.cal", "val7") , file_getprop("/sdcard/aroma.cal", "val8")
+ );
+else
+ calibrate_matrix(
+  "117460.00","980.00","-532280.00","700.00","118580.00","-452060.00","118433.00","0"
+ );
+endif;
+
+##
+# Custom Key Code - Usefull For Some Device which not used
+#                   Standard key code for up/down/select/back/menu
+#
+#
+# ini_set("customkeycode_up",     "115");
+# ini_set("customkeycode_down",   "114");
+# ini_set("customkeycode_select", "172");
+# ini_set("customkeycode_menu",   "139");
+# ini_set("customkeycode_back",   "158");
+#
+
+
+##
+# Initializing Rom Information
+#
+ini_set("rom_name",             "AdrenalineInjector");
+ini_set("rom_version",          "v1");
+ini_set("rom_author",           "dsexton702");
+ini_set("rom_device",           "Universal");
+ini_set("rom_date",             "September, 30 2012");
+
+##
+# Show Simple Splash
+#
+splash(
+  #-- Duration 2000ms / 2 seconds
+    2000,
+
+  #-- <AROMA Resource Dir>/aroma.png
+    "aroma"
+);
+
+##
+# SET LANGUAGE & FONT FAMILY
+#
+loadlang("langs/en.lang");
+fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+fontresload( "1", "ttf/Roboto-Regular.ttf", "18" );
+##
+
+###################################################################################################################
+#
+# SET THEME
+#
+
+theme("ics");
+
+
+###################################################################################################################
+#
+# STEP 2 - SHOW ROM INFORMATION
+#
+viewbox(
+  #-- Title
+    "<~welcome.title>",
+
+  #-- Text
+    "<> <b>"+
+    #-- Get Config Value
+    ini_get("rom_name")+
+  "</b> <~common.for> <b>"+ini_get("rom_device")+"</b>.\n\n"+
+
+    "<~welcome.text2>\n\n"+
+
+      "  <~welcome.version>\t\t: <b><#selectbg_g>"+ini_get("rom_version")+"</#></b>\n"+
+      "  <~welcome.codename>\t: <b><#selectbg_g>AdrenalineInjector</#></b>\n"+
+      "  <~welcome.author>\t\t: <b><#selectbg_g>"+ini_get("rom_author")+"</#></b>\n"+
+      "  <~welcome.updated>\t\t: <b><#selectbg_g>"+ini_get("rom_date")+"</#></b>\n\n\n"+
+
+    "<~welcome.next>",
+
+  #-- Icon
+    "@welcome"
+);
+
+###################################################################################################################
+#
+# STEP 3 - LICENSE
+#
+agreebox(
+  #-- Title
+    "<~terms.title>",
+
+  #-- Subtitle / Description
+    "<~terms.desc>",
+
+  #-- Icon
+    "@license",
+
+  #-- Text Content ( Read from <AROMA Resource Dir>/license.txt )
+    resread("license.txt"),
+
+  #-- Checkbox Text
+    "<~terms.check>",
+
+  #-- Unchecked Alert Message
+    "<~terms.confirm>"
+);
+
+###################################################################################################################
+#
+# STEP 4 - CHANGELOG
+#
+textbox(
+  #-- Title
+    "<~changelog.title>",
+
+  #-- Subtitle
+    "<>",
+
+  #-- Icon
+    "@update",
+
+  #-- Arg 4
+    resread("changelog.txt")
+);
+
+###################################################################################################################
+#
+# STEP 5 - SHOW MENUBOX
+#
+menubox(
+  #-- Title
+    "Main Menu",
+
+  #-- Sub Title
+    "Please chose from the menu items below.",
+
+  #-- Icon
+    "@default",
+
+  #-- Will be saved in /tmp/aroma/main.prop
+    "main.prop",
+
+  #-------------------------+-----------------[ Menubox Items ]-------------------------+---------------#
+  # TITLE                   |  SUBTITLE                                                 |   Item Icons  #
+  #-------------------------+-----------------------------------------------------------+---------------#
+
+    "Aroma File Manager",     "Launch the Aroma File Manager - <b>Advanced Users ONLY</b>",  "@install",    #-- selected = 1
+    "Adrenaline Injector",   "Launch the AdrenalineInjector",                               "@update"       #-- selected = 2
+);
+
+
+###################################################################################################################
+#                                                                                                                 #
+#                                         MAIN Adrenaline Injector                                                #
+#                                                                                                                 #
+###################################################################################################################
+
+
+###################################################################################################################
+#
+# AROMA File Manager
+#
+if prop("main.prop","selected")=="1" then
+  restotmp("aromafm.cfg","aromafm.cfg");
+  resexec("aromafm.sh");
+  resexec("aromafm","1","0",prop("aromafm.prop","ziplocation"));
+  back("1");
+endif;
+
+###################################################################################################################
+#
+# Adrenaline Injector
+#
+  selectbox(
+    # Title
+    "Choose Options",
+
+    # Sub Title
+    "Choose any options below you would like to complete.",
+
+    # Icon
+    "@update",
+
+    # Will be saved in /tmp/aroma/misc.prop
+    "misc.prop",
+
+    #----------------------------------[ Selectbox With Groups ]-----------------------------------#
+    # TITLE            |  SUBTITLE                                                 | Initial Value #
+    #------------------+-----------------------------------------------------------+---------------#
+    "initd tweaks",            "",                                                                  2,      #-- Group 1
+    "no initd tweaks",            "No initd of any kind will be installed",                         0,      #-- selected.1 = 1
+    "yes initd tweaks",        "This will install initd tweaks",                                    1,      #-- selected.1 = 2
+
+    "buildprop tweaks",       "",                                                                   2,      #-- Group 2
+    "No buildprop tweaks",             "Do not install buildrprop tweaks",        					0,      #-- selected.2 = 1
+    "Standard buildprop tweaks",       "Install the standard buildprop tweaks",                     1,      #-- selected.2 = 2
+
+    "Internal2External",    "",                                                                     2,      #-- Group 3
+    "No Internal2External",           "No Interna2External swap",                                   0,      #-- selected.3 = 1
+    "Internal2External",       "Install the Internal2External swap!",                               1       #-- selected.3 = 2
+
+    #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
+  );
+
+
+###############################################################
+ini_set("text_next", "Install Now");
+
+viewbox(
+  #-- Title
+    "Ready to Install",
+
+  #-- Text
+    "The wizard is ready to begin installation.\n\n"+
+  "Press <b>Install Now</b> to begin the installation.\n\n"+
+  "If you want to review or change any of your installation settings, press <b>Back</b>. Press Menu Key -> Quit Installation to exit the wizard.",
+
+  #-- Icon
+    "@install"
+);
+
+##
+#
+# Next Button in successfull installation should be back to "Next >"
+#
+ini_set("text_next", "Next >");
+restotmp("exec/sleep","sleep");
+
+###################################################################################################################
+#
+# ACTUAL INSTALLATION PROCESS
+#
+setvar("retstatus",
+  install(
+  #-- Title
+      "Installing",
+
+  #-- Installation Process message
+    "<b>AdrenalineInjector</b> is being installed.\n\n"+
+    "Please wait while the installation wizard completes...",
+
+  #-- Installation Icon
+      "@install",
+
+  #-- Installation Finish Message
+      "The installation wizard has completed!\n"+
+      "Press Next to continue."
+  )
+);
+
+##
+#
+# Next Button is "Finish"
+#
+ini_set("text_next", "Finish");
+
+###################################################################################################################
+#
+# FINISH MESSAGE, Let user reboot
+#
+
+checkviewbox(
+  #-- Title
+    "Installation Completed",
+
+  #-- Text
+    "<#selectbg_g><b>Congratulations...</b></#>\n\n"+
+    "Installer Status: "+getvar("retstatus")+"\n\n",
+
+  #-- Icon
+    "@welcome",
+
+  #-- Checkbox Text
+    "Reboot your device now.",
+
+  #-- Initial Checkbox value ( 0=unchecked, 1=checked ) -  (Optional, default:0)
+    "1",
+
+  #-- Save checked value in variable "reboot_it" (Optional)
+    "reboot_it"
+);
+
+###
+#
+# Check if reboot checkbox was checked
+if
+  getvar("reboot_it")=="1"
+then
+  #
+  # reboot("onfinish");   - Reboot if anything finished
+  # reboot("now");        - Reboot Directly
+  # reboot("disable");    - If you set reboot("now") before, use this command to revert it.
+  #
+  reboot("onfinish");
+endif;
+
+#---- FINISH

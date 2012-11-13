@@ -1,0 +1,7 @@
+<@center><b><#selectbg_g>CONDITIONS FOR USE</#></b></@>
+
+<b><#selectbg_g>Don't Be A n00b</#></b>
+
+<@fill><q>You hereby agree to know what you are doing.  You understand that modifying some of these apps can cause other apps or features to break or behave badly.  With this understanding you hold no one but yourself responsible for any ill effects upon your phone.</q></@>
+
+<@center><b><#selectbg_g>END OF TERMS AND CONDITIONS</#></b></@>
