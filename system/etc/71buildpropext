@@ -45,31 +45,6 @@ echo "ro.sec.proximity.delay=0" >> /system/build.prop
 echo "ro.HOME_APP_ADJ=1" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
-done;
-
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 
-if (find /sys/devices/system/cpu/ -name cpu1); then
-echo "echo 1 > /sys/devices/system/cpu/cpu1/online" >> /system/etc/init.qcom.post.boot.sh
-echo "chmod 444 /sys/devices/system/cpu/cpu1/online" >> /system/etc/init.qcom/post.boot.sh
-echo "if [ -e /system/bin/powersave ]; then     	
-     	/system/bin/powersave" >> /system/etc/init.qcom/post.boot.sh
-
-timeout=100000
-
-while : ; do
-    awake=(cat /sys/power/wait_for_fb_wake)
-    if ($awake = "awake"); then
-		chmod 666 /sys/devices/system/cpu/cpu1/online
-		usleep $timeout
-		echo "1" > /sys/devices/system/cpu/cpu1/online
-
-
-sleep=(cat /sys/power/wait_for_fb_sleep)
-    if ($sleep = "sleeping"); then
-		chmod 666 /sys/devices/system/cpu/cpu1/online
-		usleep $timeout
-		echo "0" > /sys/devices/system/cpu/cpu1/online
-		
-
-rm $0
+rm /system/etc/inti.d/71buildpropext
