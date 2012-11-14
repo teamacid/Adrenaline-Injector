@@ -2,8 +2,6 @@
 #Created by Team Acid
 #Internal2External script
 
-CD /dev/block/vold/
-
 
 VAR=$(ls -d /dev/block/vold/* | tail -1)
 
