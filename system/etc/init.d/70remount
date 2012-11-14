@@ -1,0 +1,60 @@
+#!/system/bin/sh
+#Adrenaline by Team Acid
+
+# For HSDPA low throughput
+ro.ril.disable.power.collapse=0
+
+#Battery Increase due to longer wait time for wifi scan
+wifi.supplicant_scan_interval=180
+wifi.interface=eth0
+wifi.softap.interface=eth0
+
+# Allow configuring of both cores
+echo "1" > /sys/devices/system/cpu/cpu0/online;
+echo "1" > /sys/devices/system/cpu/cpu1/online;
+
+# Remount each file system with noatime and nodiratime flags to save battery and CPU cycles
+# and change journaling mode for data and cache
+#
+busybox mount -o remount,noatime,nodiratime,remount,rw,barrier=0,data=writeback /data;
+busybox mount -o remount,noatime,nodiratime,remount,rw,barrier=0,data=writeback /cache;
+busybox mount -o remount,noatime,nodiratime /dev;
+busybox mount -o remount,noatime,nodiratime /proc;
+busybox mount -o remount,noatime,nodiratime /sys;
+busybox mount -o remount,noatime,nodiratime /system;
+
+
+# Scheduler Tweaks for performance and battery 
+
+
+MMC=`ls -d /sys/block/mmc*`;
+for q in $MMC
+do
+#	echo "deadline" > $q/queue/scheduler;
+#	echo "512" > $q/queue/read_ahead_kb;
+	echo "0" > $q/queue/rotational;
+	echo "1" > $q/queue/iosched/fifo_batch;
+	echo "1" > $q/queue/iosched/low_latency;
+	echo "1" > $q/queue/iosched/back_seek_penalty;
+	echo "1000000000" > $q/queue/iosched/back_seek_max;
+	echo "3" > $q/queue/iosched/slice_idle; 
+	echo "16" > $q/queue/iosched/quantum
+	echo "512" > $q/queue/nr_requests;
+done
+
+#Sdcard read ahead
+echo "4096" > /sys/devices/virtual/bdi/179:0/read_ahead_kb; 
+
+# Kernel Tweaks
+#
+sysctl -w kernel.sched_features=15834233;
+sysctl -w kernel.msgmni=2048;
+sysctl -w kernel.msgmax=64000;
+sysctl -w kernel.shmmax=268435500;
+sysctl -w kernel.sem=500,512000,64,2048;
+sysctl -w kernel.hung_task_timeout_secs=0;
+sysctl -w kernel.sched_latency_ns=5000000; 
+sysctl -w kernel.sched_compat_yield=1;
+sysctl -w kernel.sched_shares_ratelimit=256000;
+sysctl -w kernel.sched_child_runs_first=0;
+sysctl -w kernel.threads-max=10000;
