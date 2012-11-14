@@ -45,6 +45,8 @@ echo "ro.sec.proximity.delay=0" >> /system/build.prop
 echo "ro.HOME_APP_ADJ=1" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
+done;
+
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 
 if (find /sys/devices/system/cpu/ -name cpu1); then
