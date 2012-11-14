@@ -53,20 +53,20 @@ echo "chmod 444 /sys/devices/system/cpu/cpu1/online" >> /system/etc/init.qcom/po
 echo "if [ -e /system/bin/powersave ]; then     	
      	/system/bin/powersave" >> /system/etc/init.qcom/post.boot.sh
 
-holdon_timeout=100000
+timeout=100000
 
 while : ; do
-    awake=`cat /sys/power/wait_for_fb_wake`
-    if [ $awake = "awake" ]; then
+    awake=(cat /sys/power/wait_for_fb_wake)
+    if ($awake = "awake"); then
 		chmod 666 /sys/devices/system/cpu/cpu1/online
-		usleep $holdon_timeout
+		usleep $timeout
 		echo "1" > /sys/devices/system/cpu/cpu1/online
 
 
-sleep=`cat /sys/power/wait_for_fb_sleep`
-    if [ $sleep = "sleeping" ]; then
+sleep=(cat /sys/power/wait_for_fb_sleep)
+    if ($sleep = "sleeping"); then
 		chmod 666 /sys/devices/system/cpu/cpu1/online
-		usleep $holdon_timeout
+		usleep $timeout
 		echo "0" > /sys/devices/system/cpu/cpu1/online
 		
 
