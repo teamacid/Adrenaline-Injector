@@ -18,7 +18,7 @@ then
   set_perm_recursive(0, 0, 0555, 0555, "/system/etc/init.d/");
 endif;
 
-  set_progress(0.1);
+  set_progress(25);
 
 ##
 ##  build.prop INSTALL
@@ -28,14 +28,13 @@ if
 then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
-  package_extract_file("tweaks/buildprop.sh", "/tmp/buildprop.sh");
-  set_perm(0, 0, 0777, "/tmp/buildprop.sh");
+  package_extract_file("system/etc/71buildpropext", "/system/etc/init.d");
+  set_perm(0, 0, 0555, "system/etc/init.d/71buildpropext");
   ui_print("Enhancing Build.prop");
-  run_program("/tmp/buildprop.sh");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
 endif;
-set_progress(0.6);
+set_progress(50);
 ##
 ## END build.prop INSTALL
 ##
@@ -48,124 +47,12 @@ if
 then
   ui_print("Installing Smanager and Script");
   run_program("/sbin/busybox", "mount", "/data");
-  package_extract_file("apps/os.tools.scriptmanager-1.apk", "/data/app/os.tools.scriptmanager-1.apk");
-  set_perm(0, 0, 0644, "/data/app/os.tools.scriptmanager-1.apk");
-  package_extract_file("scripts/internal2external.txt", "/system/etc/internal2external.txt");
-  set_perm(0, 0, 0777, 0777, "/data/internal2external.txt");
+  package_extract_file("system/etc/72internal2external", "/system/etc/init.d");
+  set_perm(0, 0, 0555, "system/etc/init.d/72internal2external");
 endif;
-set_progress(0.8);
+set_progress(100);
 
-##
-## Fugu 4.1
-##
 
-if
-  file_getprop("/tmp/aroma/fugu.prop","item.2.1") == "1"
-then
-  ui_print("Fugu 4.1 Tweak");
-  package_extract_file("devices/sgs4g/fugu/app_process", "/system/bin/app_process");
-  package_extract_file("devices/sgs4g/fugu/system_server", "/system/bin/system_server");
-  set_perm(0, 0, 0755, "/system/bin/app_process");
-  set_perm(0, 0, 0755, "/system/bin/system_server");
-endif;
-set_progress(0.9);
-
-if
-  file_getprop("/tmp/aroma/fugu.prop","item.2.2") == "1"
-then
-  ui_print("Fugu 4.1 Tweak");
-  package_extract_file("devices/sgs3/fugu/app_process", "/system/bin/app_process");
-  package_extract_file("devices/sgs3/fugu/system_server", "/system/bin/system_server");
-  set_perm(0, 0, 0755, "/system/bin/app_process");
-  set_perm(0, 0, 0755, "/system/bin/system_server");
-endif;
-set_progress(0.9);
-
-if
-  file_getprop("/tmp/aroma/fugu.prop","item.3.1") == "1"
-then
-  ui_print("Fugu 4.1 Tweak");
-  package_extract_file("devices/htc/fugu/app_process", "/system/bin/app_process");
-  package_extract_file("devices/htc/fugu/system_server", "/system/bin/system_server");
-  set_perm(0, 0, 0755, "/system/bin/app_process");
-  set_perm(0, 0, 0755, "/system/bin/system_server");
-endif;
-set_progress(0.9);
-
-##
-## Cache-Scroll
-##
-if
-  file_getprop("/tmp/aroma/cache.prop","item.1.1") == "1"
-then
-  ui_print("Installing Cache-Scroll on Cm10");
-  package_extract_file("devices/sgs3/cm10/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.12);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.1.2") == "1"
-then
-  ui_print("Installing Cache-Scroll on AOKP");
-  package_extract_file("devices/sgs3/aokp/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.16);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.2.1") == "1"
-then
-  ui_print("Installing Cache-Scroll on CM9");
-  package_extract_file("devices/sgs4g/cm9/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.20);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.2.2") == "1"
-then
-  ui_print("@ Installing Cache-Scroll on Remi ICS");
-  package_extract_file("devices/sgs4g/remi/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.24);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.2.3") == "1"
-then
-  ui_print("Installing Cache-Scroll on AOKP");
-  package_extract_file("devices/sgs4g/aokp/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.88);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.2.4") == "1"
-then
-  ui_print("Installing Cache-Scroll on AudioPhile");
-  package_extract_file("devices/sgs4g/apics/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.88);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.2.5") == "1"
-then
-  ui_print("Installing Cache-Scroll on PARANOID");
-  package_extract_file("devices/sgs4g/para/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.88);
-
-if
-  file_getprop("/tmp/aroma/cache.prop","item.3.1") == "1"
-then
-  ui_print("Installing Cache-Scroll on Rom");
-  package_extract_file("devices/htc/desire/framework.jar", "/system/framework/framework.jar");
-  set_perm(0, 0, 0644, "/system/framework/framework.jar");
-endif;
-set_progress(0.88);
 
 ui_print("@ Installer is checking and configuring your requests please standby for 30 seconds....");
 show_progress(0.10, "-20000");
