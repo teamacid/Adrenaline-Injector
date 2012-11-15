@@ -46,5 +46,4 @@ echo "ro.HOME_APP_ADJ=1" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
-
-rm /system/etc/inti.d/71buildpropext
+done;

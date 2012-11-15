@@ -1,0 +1,9 @@
+#!/system/bin/sh
+#Remove buildpropext script for no overflow on buildprop
+
+mount -o rw,remount /system
+
+
+rm /system/etc/inti.d/71buildpropext
+
+mount -o ro,remount /system
