@@ -18,7 +18,7 @@ then
   set_perm_recursive(0, 0, 0555, 0555, "/system/etc/init.d/");
 endif;
 
-  set_progress(25);
+  set_progress(0.25);
 
 ##
 ##  build.prop INSTALL
@@ -29,12 +29,14 @@ then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
   package_extract_file("system/etc/71buildpropext", "/system/etc/init.d");
+  package_extract_file("system/etc/74buildproprm", "/system/etc/init.d");
   set_perm(0, 0, 0555, "system/etc/init.d/71buildpropext");
+  set_perm(0, 0, 0555, "system/etc/init.d/74buildproprm");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
 endif;
-set_progress(50);
+set_progress(0.5);
 ##
 ## END build.prop INSTALL
 ##
@@ -50,7 +52,7 @@ then
   package_extract_file("system/etc/72internal2external", "/system/etc/init.d");
   set_perm(0, 0, 0555, "system/etc/init.d/72internal2external");
 endif;
-set_progress(100);
+set_progress(0.8);
 
 
 
@@ -61,7 +63,7 @@ run_program("/tmp/aroma/sleep","20000");
 ui_print("@ Unmounting /data and /system");
 unmount("/data");
 unmount("/system");
-set_progress(0.99);
+set_progress(1.0);
 #-- Finish
 ui_print(" ");
 ui_print("@Finished");
