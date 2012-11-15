@@ -28,8 +28,8 @@ if
 then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
-  package_extract_file("/system/etc/72buildpropext", "/system/etc/init.d/buildpropext");
-  package_extract_file("/system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
+  package_extract_file("system/etc/72buildpropext", "/system/etc/init.d/buildpropext");
+  package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
   set_perm(0, 0, 0555, "/system/etc/init.d/72buildpropext");
   set_perm(0, 0, 0555, "/system/etc/init.d/74buildproprm");
   ui_print("Enhancing Build.prop");
@@ -49,7 +49,7 @@ if
 then
   ui_print("Installing Smanager and Script");
   run_program("/sbin/busybox", "mount", "/data");
-  package_extract_file("/system/etc/75internal2external", "/system/etc/init.d/75internal2external");
+  package_extract_file("system/etc/75internal2external", "/system/etc/init.d/75internal2external");
   set_perm(0, 0, 0555, "/system/etc/init.d/75internal2external");
 endif;
 set_progress(0.8);
@@ -63,7 +63,7 @@ if
 then
   ui_print("multi-core tweaks");
   ui_print("Copying files...");
-  package_extract_file("/system/etc/73multicore", "/system/etc/init.d/73multicore");
+  package_extract_file("system/etc/73multicore", "/system/etc/init.d/73multicore");
   set_perm(0, 0, 0555, "/system/etc/init.d/73multicore");
   ui_print("Enhancing Cores");
   show_progress(0.3, "-3000");
@@ -82,8 +82,8 @@ if
 then
   ui_print("disable journaling");
   ui_print("Copying files...");
-  package_extract_file("/system/etc/71journaldisable", "/system/etc/init.d/71journaldisable");
-  package_extract_file("/system/etc/76journalrm", "/system/etc/init.d/76journalrm");
+  package_extract_file("system/etc/71journaldisable", "/system/etc/init.d/71journaldisable");
+  package_extract_file("system/etc/76journalrm", "/system/etc/init.d/76journalrm");
   set_perm(0, 0, 0555, "/system/etc/init.d/71journaldisable");
   set_perm(0, 0, 0555, "/system/etc/init.d/76journalrm");
   ui_print("removing journaling");
