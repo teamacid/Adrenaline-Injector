@@ -4,6 +4,6 @@
 mount -o rw,remount /system
 
 
-rm /system/etc/inti.d/72buildpropext
+rm /system/etc/inti.d/71journaldisable
 
 mount -o ro,remount /system
