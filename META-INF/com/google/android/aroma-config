@@ -256,9 +256,9 @@ endif;
     "do have duel core or more",       "Install the Internal2External swap!",                       0,       #-- selected.4 = 2
 
     "Universal Journal Disabler",    "",                                                            2,      #-- Group 5
-    "yes disable journling",           "disable Journaling",                                        0,      #-- selected.3 = 1
-    "nooooo dont",                     "dont disable journaling",                                   0       #-- selected.5 = 2
-
+    "do not disable journling",           "DONT disable Journaling",                                0,      #-- selected.3 = 1
+    "disable journaling",                     "disable journaling",                                 0       #-- selected.5 = 2
+  
     #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
   );
 
