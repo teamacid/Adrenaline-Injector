@@ -56,16 +56,6 @@
 #
 #### NOTE >> THIS VERSION DOESN'T NEED ANY CALIBRATION DATA :)
 
-##[ DEPRECATED - WONT DO ANYTHING FOR THIS VERSION ]
-if read("/sdcard/aroma.cal") != "" then
- calibrate_matrix(
-  file_getprop("/sdcard/aroma.cal", "val1")  ,  file_getprop("/sdcard/aroma.cal", "val2")  ,  file_getprop("/sdcard/aroma.cal", "val3") , file_getprop("/sdcard/aroma.cal", "val4") , file_getprop("/sdcard/aroma.cal", "val5") , file_getprop("/sdcard/aroma.cal", "val6") , file_getprop("/sdcard/aroma.cal", "val7") , file_getprop("/sdcard/aroma.cal", "val8")
- );
-else
- calibrate_matrix(
-  "117460.00","980.00","-532280.00","700.00","118580.00","-452060.00","118433.00","0"
- );
-endif;
 
 ##
 # Custom Key Code - Usefull For Some Device which not used
@@ -251,15 +241,19 @@ endif;
     #------------------+-----------------------------------------------------------+---------------#
     "initd tweaks",            "",                                                                  2,      #-- Group 1
     "no initd tweaks",            "No initd of any kind will be installed",                         0,      #-- selected.1 = 1
-    "yes initd tweaks",        "This will install initd tweaks",                                    1,      #-- selected.1 = 2
+    "yes initd tweaks",        "This will install initd tweaks",                                    0,      #-- selected.1 = 2
 
     "buildprop tweaks",       "",                                                                   2,      #-- Group 2
-    "No buildprop tweaks",             "Do not install buildrprop tweaks",        					0,      #-- selected.2 = 1
-    "Standard buildprop tweaks",       "Install the standard buildprop tweaks",                     1,      #-- selected.2 = 2
+    "No buildprop tweaks",             "Do not install buildrprop tweaks",                          0,      #-- selected.2 = 1
+    "Standard buildprop tweaks",       "Install the standard buildprop tweaks",                     0,      #-- selected.2 = 2
 
     "Internal2External",    "",                                                                     2,      #-- Group 3
     "No Internal2External",           "No Interna2External swap",                                   0,      #-- selected.3 = 1
-    "Internal2External",       "Install the Internal2External swap!",                               1       #-- selected.3 = 2
+    "Internal2External",       "Install the Internal2External swap!",                               0,       #-- selected.3 = 2
+
+    "Multi-Core Tweaks",    "",                                                                     2,      #-- Group 4
+    "dont have duel core or more",           "No multi-core tweaks",                                0,      #-- selected.3 = 1
+    "do have duel core or more",       "Install the Internal2External swap!",                       0       #-- selected.3 = 2
 
     #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
   );
