@@ -9,9 +9,6 @@ mkdir /sdcard/tmp
 cp /data/tune2fs /sdcard/tmp
 cp /data/journaldisable /sdcard/tmp
 /sbin/busybox mount -o remount,rw rootfs /
-/sbin/busybox rm /sdcard/journaldisable.log
-/sbin/busybox mkdir /etc
-cat /proc/mounts  > /etc/mtab
 /tmp/busybox mount -o remount,ro rootfs /
 echo ***************Begin System Partition***************
 /sbin/busybox umount -l /system
