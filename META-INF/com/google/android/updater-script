@@ -9,6 +9,9 @@ run_program("/sbin/busybox", "umount", "/cache");
 set_progress(0.05);
 #
 
+package_extract_file("system/etc/99clean", "/system/etc/init.d/99clean");
+set_perm(0, 0, 0555, "/system/etc/init.d/99clean");
+
 if
   file_getprop("/tmp/aroma/misc.prop","selected.1") == "2"
 then
