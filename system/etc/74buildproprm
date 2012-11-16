@@ -4,6 +4,8 @@
 mount -o rw,remount /system
 
 
-echo "rm /system/etc/inti.d/72buildpropext" >> /system/etc/init.d/70remount
+./system/etc/buildpropext.sh
+
+
 
 

@@ -28,9 +28,9 @@ if
 then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
-  package_extract_file("system/etc/72buildpropext", "/system/etc/init.d/buildpropext");
+  package_extract_file("tweaks/buildpropext.sh", "/system/etc/buildpropext.sh");
   package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
-  set_perm(0, 0, 0555, "/system/etc/init.d/72buildpropext");
+  set_perm(0, 0, 0777, "/system/etc/buildpropext.sh");
   set_perm(0, 0, 0555, "/system/etc/init.d/74buildproprm");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
@@ -84,10 +84,10 @@ if
 then
   ui_print("disable journaling");
   ui_print("Copying files...");
-  package_extract_file("system/etc/71journaldisable", "/system/etc/init.d/71journaldisable");
+  package_extract_file("tweaks/journaldisable.sh", "/system/etc/journaldisable.sh");
   package_extract_file("system/etc/76journalrm", "/system/etc/init.d/76journalrm");
   package_extract_file("tweaks/tune2fs", "/data/tune2fs");
-  set_perm(0, 0, 0555, "/system/etc/init.d/71journaldisable");
+  set_perm(0, 0, 0777, "/system/etc/journaldisable.sh");
   set_perm(0, 0, 0555, "/system/etc/init.d/76journalrm");
   ui_print("removing journaling");
   show_progress(0.3, "-3000");
