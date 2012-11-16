@@ -1,5 +1,5 @@
 #!/system/bin/sh
-#Build.prop and multi-core tweaks
+#Build.prop tweaks
 
 mount -o rw,remount /system
 echo "#Grpahics & performances tweaks" >> /system/build.prop
@@ -33,7 +33,7 @@ echo "dalvik.vm.jniopts=forcecopy" >> /system/build.prop
 echo "dalvik.vm.dexopt-flags=m=v,o=y" >> /system/build.prop
 echo "dalvik.vm.execution-mode=int:jit" >> /system/build.prop
 echo "dalvik.gc.type=precise" >> /system/build.prop
-echo "#Other Performance Tweaks"
+echo "#Other Performance Tweaks" >> /system/build.prop
 echo "persist.android.strictmode=0" >> /system/build.prop
 echo "debug.gr.swapinterval=0" >> /system/build.prop
 echo "persist.android.strictmode=0" >> /system/build.prop
@@ -46,4 +46,4 @@ echo "ro.HOME_APP_ADJ=1" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
-done;
+done
