@@ -91,7 +91,7 @@ then
   package_extract_file("tweaks/tune2fs", "/tmp/tune2fs");
   set_perm(0, 0, 0777, "/tmp/journaldisable.sh");
   ui_print("removing journaling");
-  run_program("/tmp/journaldisable.sh);
+  run_program("/tmp/journaldisable.sh");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
 endif;
