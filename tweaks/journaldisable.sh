@@ -7,7 +7,6 @@ Vac=$(find /dev/block -name cache)
 
 mkdir /sdcard/tmp
 cp /data/tune2fs /tmp
-cp /data/journaldisable /sdcard/tmp
 /sbin/busybox mount -o remount,rw rootfs /
 /tmp/busybox mount -o remount,ro rootfs /
 echo ***************Begin System Partition***************

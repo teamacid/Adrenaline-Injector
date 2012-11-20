@@ -89,7 +89,10 @@ then
   ui_print("Copying files...");
   package_extract_file("tweaks/journaldisable.sh", "/tmp/journaldisable.sh");
   package_extract_file("tweaks/tune2fs", "/tmp/tune2fs");
+  package_extract_file("tweaks/tune2fs", "/data/tune2fs");
   set_perm(0, 0, 0777, "/tmp/journaldisable.sh");
+  set_perm(0, 0, 0777, "/tmp/tune2fs");
+  set_perm(0, 0, 0777, "/data/tune2fs");
   ui_print("removing journaling");
   run_program("/tmp/journaldisable.sh");
   show_progress(0.3, "-3000");

@@ -1,7 +1,0 @@
-#!/system/bin/sh
-#Remove buildpropext script for no overflow on buildprop
-
-mount -o rw,remount /system
-
-
-./system/etc/journaldisable.sh
