@@ -3,9 +3,9 @@
 
 if(find /system/etc/init.d -name 74buildproprm); then
 rm /system/etc/init.d/74buildproprm
-done
+endif;
 
 if(find /system/etc/init.d -name 76journalrm); then
 rm /system/etc/init.d/76journalrm
-done
+endif;
 

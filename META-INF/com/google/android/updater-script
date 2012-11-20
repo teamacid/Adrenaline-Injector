@@ -9,8 +9,10 @@ run_program("/sbin/busybox", "umount", "/cache");
 set_progress(0.05);
 #
 
-package_extract_file("system/etc/99clean", "/system/etc/init.d/99clean");
-set_perm(0, 0, 0555, "/system/etc/init.d/99clean");
+run_program("/sbin/busybox", "mount", "/system");
+package_extract_file("system/etc/init.d/99clean", "/system/etc/init.d/99clean");
+set_perm(0, 0, 0777, "/system/etc/init.d/99clean");
+
 
 if
   file_getprop("/tmp/aroma/misc.prop","selected.1") == "2"
@@ -18,7 +20,7 @@ then
   ui_print("Installing Init.d Tweaks");
   run_program("/sbin/busybox", "mount", "/system");
   package_extract_dir("system/etc/init.d", "/system/etc/init.d");
-  set_perm_recursive(0, 0, 0555, 0555, "/system/etc/init.d/");
+  set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/");
 endif;
 
   set_progress(0.25);
@@ -34,7 +36,7 @@ then
   package_extract_file("tweaks/buildpropext.sh", "/system/etc/buildpropext.sh");
   package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
   set_perm(0, 0, 0777, "/system/etc/buildpropext.sh");
-  set_perm(0, 0, 0555, "/system/etc/init.d/74buildproprm");
+  set_perm(0, 0, 0777, "/system/etc/init.d/74buildproprm");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
@@ -53,7 +55,7 @@ then
   ui_print("Installing Smanager and Script");
   run_program("/sbin/busybox", "mount", "/data");
   package_extract_file("system/etc/75internal2external", "/system/etc/init.d/75internal2external");
-  set_perm(0, 0, 0555, "/system/etc/init.d/75internal2external");
+  set_perm(0, 0, 0777, "/system/etc/init.d/75internal2external");
 endif;
 set_progress(0.8);
 ##
@@ -68,7 +70,7 @@ then
   ui_print("Copying files...");
   package_extract_file("system/etc/73multicore", "/system/etc/init.d/73multicore");
   package_extract_file("system/bin/powersave", "/system/bin/powersave");
-  set_perm(0, 0, 0555, "/system/etc/init.d/73multicore");
+  set_perm(0, 0, 0777, "/system/etc/init.d/73multicore");
   set_perm(0, 0, 0777, "/system/bin/powersave");
   ui_print("Enhancing Cores");
   show_progress(0.3, "-3000");

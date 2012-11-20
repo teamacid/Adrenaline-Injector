@@ -1,13 +1,6 @@
 #!/system/bin/sh
 #Adrenaline by Team Acid
 
-# For HSDPA low throughput
-ro.ril.disable.power.collapse=0
-
-#Battery Increase due to longer wait time for wifi scan
-wifi.supplicant_scan_interval=180
-wifi.interface=eth0
-wifi.softap.interface=eth0
 
 # Allow configuring of both cores
 echo "1" > /sys/devices/system/cpu/cpu0/online;
