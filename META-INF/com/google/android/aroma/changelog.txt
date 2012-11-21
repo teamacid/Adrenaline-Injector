@@ -1,8 +1,9 @@
 <b><#selectbg_g>Dsexton702/Teamcids Adrenaline Injector</#></b>
 
 <b><u>initial release 20121001</u></b>
-<*> Only Specific Init.d files are now needed</*>
-<*> Fugu is really only meant for Gingerbread and ICS users</*>
-<*> build.prop tweaks are widely known but none the least are great to have these are pretty good tweaks ;)</*>
-<*> Internal2External is meant for ics jb native devices where app2sd doesnt work anymore and internal storage fills up quick this will swap your sdcard storage with the internal storage</*>
-<*> Smanager.apk added for internal2external script to work</*>
+<*> Brand New A.I</*>
+<*>Build.prop tweaks</*>
+<*>Remove Journaling on ext4 partitions</*>
+<*>Internal2External Swap</*>
+<*>Other tweaks...</*>
+
