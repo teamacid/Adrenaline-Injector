@@ -8,11 +8,11 @@ echo "1" > /sys/devices/system/cpu/cpu1/online;
 
 # Remount each file system with noatime and nodiratime flags to save battery and CPU cycles
 
-mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /system
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noatime,noauto_da_alloc,barrier=0 /system
 
-mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /data
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /data
 
-mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /cache
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /cache
 
 
 # Scheduler Tweaks for performance and battery 
