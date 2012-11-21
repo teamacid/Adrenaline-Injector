@@ -9,3 +9,4 @@ if(find /system/etc/init.d -name 76journalrm); then
 rm /system/etc/init.d/76journalrm
 endif;
 
+rm /system/etc/multicore.sh
