@@ -17,7 +17,9 @@ umount -f $Vad
 
 umount -f $Vadu
 
-umount -f $Vac
+umount -f -l $Vac
+
+umount -f /cache
 
 
 e2fsck -p -f $Vas 
