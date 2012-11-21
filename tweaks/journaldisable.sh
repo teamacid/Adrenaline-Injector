@@ -4,28 +4,41 @@
 Vas=$(find /dev/block -name system)
 Vad=$(find /dev/block -name data)
 Vac=$(find /dev/block -name cache)
+Vadu=$(find /dev/block -name userdata)
 
 cp /data/tune2fs /tmp
 
 chmod 777 /tmp/tune2fs
 
-umount $Vas
 
-umount $Vad
+umount -f $Vas
 
-umount $Vac
+umount -f $Vad
+
+umount -f $Vadu
+
+umount -f $Vac
 
 
-/tmp/tune2fs -o journal_data_writeback $Vas
+e2fsck -p -f $Vas 
 
-/tmp/tune2fs -o journal_data_writeback $Vad
+tune2fs -O ^has_journal $Vas 
 
-/tmp/tune2fs -o journal_data_writeback $Vac
+e2fsck -p -f $Vadu 
 
-mount -o remount,noatime,nodiratime,nobh,noauto_da_alloc,barrier=0 $Vas /system
+fsck -p -f $Vadu 
 
-mount -o remount,noatime,nodiratime,nobh,noauto_da_alloc,barrier=0 $Vad /data
+tune2fs -O ^has_journal $Vadu
 
-mount -o remount,noatime,nodiratime,nobh,noauto_da_alloc,barrier=0 $Vac /cache
+e2fsck -p -f $Vad 
+
+fsck -p -f $Vad
+
+tune2fs -O ^has_journal $Vad
+
+e2fsck -p -f $Vac 
+
+tune2fs -O ^has_journal $Vac 
+
 
 
