@@ -1,11 +1,6 @@
 #!/system/bin/sh
 #Adrenaline by Team Acid
 
-Vas=$(find /dev/block -name system)
-Vad=$(find /dev/block -name data)
-Vac=$(find /dev/block -name cache)
-Vadu=$(find /dev/block -name userdata)
-
 
 # Allow configuring of both cores
 echo "1" > /sys/devices/system/cpu/cpu0/online;
@@ -13,13 +8,11 @@ echo "1" > /sys/devices/system/cpu/cpu1/online;
 
 # Remount each file system with noatime and nodiratime flags to save battery and CPU cycles
 
-mount -o remount,noatime,nodiratime,nobh,commit=900,noauto_da_alloc,data=writeback,barrier=0 $Vas 
+mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /system
 
-mount -o remount,noatime,nodiratime,nobh,commit=900,noauto_da_alloc,data=writeback,barrier=0 $Vad 
+mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /data
 
-mount -o remount,noatime,nodiratime,nobh,commit=900,noauto_da_alloc,data=writeback,barrier=0 $Vac 
-
-mount -o remount,noatime,nodiratime,nobh,commit=900,noauto_da_alloc,data=writeback,barrier=0 $Vadu 
+mount -o remount,nobh,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /cache
 
 
 # Scheduler Tweaks for performance and battery 
