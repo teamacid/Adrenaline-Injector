@@ -4,7 +4,7 @@
 busybox mount -o remount,noatime,nodiratime,nodelalloc,commit=900,noauto_da_alloc,barrier=0 /system
 
 
-if (find /system/etc/init.d/ -name 74buildproprm); then
+if (find /system/etc/init.d -name 74buildproprm); then
 
 rm /system/etc/init.d/74buildproprm
 
