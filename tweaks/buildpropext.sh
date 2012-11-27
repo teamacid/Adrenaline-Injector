@@ -61,5 +61,8 @@ echo "CPU_MIN_CHECK_DURATION=false" >> /system/build.prop
 echo "GC_TIMEOUT=false" >> /system/build.prop
 echo "SERVICE_TIMEOUT=false" >> /system/build.prop
 echo "MIN_CRASH_INTERVAL=false" >> /system/build.prop
+echo "ro.config.hw_power_saving=true" >> /system/build.prop
+echo "ro.mot.eri.losalert.delay=100000" >> /system/build.prop
+echo "persist.ril.uart.flowctrl=90" >> /system/build.prop 
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 done
