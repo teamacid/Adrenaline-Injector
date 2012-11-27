@@ -34,9 +34,11 @@ then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
   package_extract_file("tweaks/buildpropext.sh", "/system/etc/buildpropext.sh");
+  package_extract_file("tweaks/buildpropclean.sh", "/system/etc/buildpropclean.sh");
   package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
   set_perm(0, 0, 0777, "/system/etc/buildpropext.sh");
   set_perm(0, 0, 0777, "/system/etc/init.d/74buildproprm");
+  set_perm(0, 0, 0777, "/system/etc/buildpropclean.sh");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
