@@ -42,8 +42,24 @@ echo "ENFORCE_PROCESS_LIMIT=false" >> /system/build.prop
 echo "ro.min_pointer_dur=1" >> /system/build.prop
 echo "ro.telephony.call_ring.delay=0" >> /system/build.prop
 echo "ro.sec.proximity.delay=0" >> /system/build.prop
-echo "ro.HOME_APP_ADJ=1" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
+echo "ENFORCE_PROCESS_LIMIT=false" >> /system/build.prop
+echo "MAX_SERVICE_INACTIVITY=false" >> /system/build.prop
+echo "MIN_HIDDEN_APPS=false" >> /system/build.prop
+echo "MAX_HIDDEN_APPS=false" >> /system/build.prop
+echo "CONTENT_APP_IDLE_OFFSET=false" >> /system/build.prop
+echo "EMPTY_APP_IDLE_OFFSET=false" >> /system/build.prop
+echo "MAX_ACTIVITIES=false" >> /system/build.prop
+echo "ACTIVITY_INACTIVE_RESET_TIME=false" >> /system/build.prop
+echo "MAX_RECENT_TASKS=false" >> /system/build.prop
+echo "MIN_RECENT_TASKS=false" >> /system/build.prop
+echo "APP_SWITCH_DELAY_TIME=false" >> /system/build.prop
+echo "MAX_PROCESSES=false" >> /system/build.prop
+echo "PROC_START_TIMEOUT=false" >> /system/build.prop
+echo "CPU_MIN_CHECK_DURATION=false" >> /system/build.prop
+echo "GC_TIMEOUT=false" >> /system/build.prop
+echo "SERVICE_TIMEOUT=false" >> /system/build.prop
+echo "MIN_CRASH_INTERVAL=false" >> /system/build.prop
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 done
