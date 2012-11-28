@@ -20,7 +20,7 @@ mount -o remount,noatime,rw /system /system
   echo
   echo "-> java -jar baksmali.jar -o dexout classes.dex"
 
-  ./java -jar baksmali.jar -o dexout classes.dex
+   ./baksmali.jar -o dexout classes.dex
 
   
 
@@ -48,7 +48,8 @@ mount -o remount,noatime,rw /system /system
       echo
       echo "-> java -Xmx512m -jar smali.jar dexout out -o classes.dex"
       echo
-      ./java -Xmx512m -jar smali.jar dexout out -o classes.dex      
+      ./smali.jar dexout out -o classes.dex   
+   
       
         zip -r -q $file_chosen classes.dex
 

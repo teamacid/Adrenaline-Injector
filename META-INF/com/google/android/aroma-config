@@ -196,7 +196,6 @@ menubox(
   # TITLE                   |  SUBTITLE                                                 |   Item Icons  #
   #-------------------------+-----------------------------------------------------------+---------------#
 
-    "Aroma File Manager",     "Launch the Aroma File Manager - <b>Advanced Users ONLY</b>",  "@install",    #-- selected = 1
     "Adrenaline Injector",   "Launch the AdrenalineInjector",                               "@update"       #-- selected = 2
 );
 
@@ -252,12 +251,16 @@ endif;
     "Internal2External",       "Install the Internal2External swap!",                               0,      #-- selected.3 = 2
 
     "Multi-Core Tweaks",    "",                                                                     2,      #-- Group 4
-    "dont have duel core or more",           "No multi-core tweaks",                                0,      #-- selected.3 = 1
+    "dont have duel core or more",           "No multi-core tweaks",                                0,      #-- selected.4 = 1
     "do have duel core or more",       "Install the Internal2External swap!",                       0,       #-- selected.4 = 2
 
     "Universal Journal Disabler",    "",                                                            2,      #-- Group 5
-    "do not disable journling",           "DONT disable Journaling",                                0,      #-- selected.3 = 1
-    "disable journaling",                     "disable journaling",                                 0       #-- selected.5 = 2
+    "do not disable journling",           "DONT disable Journaling",                                0,      #-- selected.5 = 1
+    "disable journaling",                     "disable journaling",                                 0,      #-- selected.5 = 2
+
+    "Universal Cache-Scroll Tweak FINALLY!",    "",                                                 2,      #-- Group 6
+    "do not disable CACHE-SCROLL",           "DONT disable CACHE-SCROLL",                           0,      #-- selected.6 = 1
+    "disable CACHE-SCROLL",                     "disable CACHE-SCROLL",                             0       #-- selected.6 = 2
   
     #--------[ Initial Value = 0: Unselected, 1: Selected, 2: Group Item, 3: Not Visible ]---------#
   );
