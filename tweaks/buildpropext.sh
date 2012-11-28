@@ -66,3 +66,4 @@ echo "ro.mot.eri.losalert.delay=100000" >> /system/build.prop
 echo "persist.ril.uart.flowctrl=90" >> /system/build.prop 
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 done
+
