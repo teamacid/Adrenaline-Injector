@@ -1,0 +1,57 @@
+#!/system/bin/sh
+#Cache-Scroll Tweak by Team Acid
+
+  
+mount -o remount,noatime,rw /system /system
+
+
+  TFILE=$ /system/etc/dexout/android/widget/AbsListView.smali
+  folder= /system/etc
+  file_chosen= /system/etc/framework.jar
+
+  cd $folder
+
+  cp /system/framework/framework.jar /system/etc
+
+
+  echo
+  echo "-> unzip $file_chosen classes.dex"
+
+  echo
+  echo "-> java -jar baksmali.jar -o dexout classes.dex"
+
+  
+
+  OLD=$'.prologue const/4 v1, 0x1' 
+  OLD1=$'invoke-virtual {p0, v1}, Landroid/widget/AbsListView; >setScrollingCacheEnabled(Z)V' 
+  OLD2=$'.method public setScrollingCacheEnabled(Z)V
+    .registers 3
+    .parameter "enabled"'
+
+  NEW=$'.prologue const/4 v1, 0x0'
+  NEW1=$'invoke-virtual {p0, v2}, Landroid/widget/AbsListView; >setScrollingCacheEnabled(Z)V'
+  NEW2=$'.method public setScrollingCacheEnabled(Z)V
+    .registers 3
+    .parameter "enabled"'
+
+  sed "s/$OLD/$NEW/g" > $TFILE
+
+  rm /system/etc/classes.dex
+
+
+    read go_compile
+
+      echo
+      echo "Compiling $file_chosen ..."
+      echo
+      echo "-> java -Xmx512m -jar smali.jar dexout out -o classes.dex"
+      echo
+      ./java -Xmx512m -jar smali.jar dexout out -o classes.dex      
+      
+
+        echo "-> zip -r -q $file_chosen classes.dex"
+        echo
+        zip -r -q $file_chosen classes.dex
+
+  cp $file_chosen /system/framework
+  
