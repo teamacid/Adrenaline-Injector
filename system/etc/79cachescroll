@@ -15,10 +15,12 @@ mount -o remount,noatime,rw /system /system
 
 
   echo
-  echo "-> unzip $file_chosen classes.dex"
+  unzip $file_chosen classes.dex
 
   echo
   echo "-> java -jar baksmali.jar -o dexout classes.dex"
+
+  ./java -jar baksmali.jar -o dexout classes.dex
 
   
 
@@ -48,9 +50,6 @@ mount -o remount,noatime,rw /system /system
       echo
       ./java -Xmx512m -jar smali.jar dexout out -o classes.dex      
       
-
-        echo "-> zip -r -q $file_chosen classes.dex"
-        echo
         zip -r -q $file_chosen classes.dex
 
   cp $file_chosen /system/framework
