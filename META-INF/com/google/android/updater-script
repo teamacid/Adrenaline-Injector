@@ -108,26 +108,6 @@ set_progress(0.9);
 ## END journal disabler INSTALL
 ##
 
-##
-##  CACHE-SCROLL
-##
-if
-  file_getprop("/tmp/aroma/misc.prop","selected.6") == "2"
-then
-  ui_print("cachce-scroll tweak, prepare for smooth scrolling");
-  ui_print("Copying files...");
-  package_extract_file("system/etc/79cachescroll", "/system/etc/init.d/79cachescroll");
-  package_extract_file("tweaks/smali.jar", "/system/etc/smali.jar");
-  package_extract_file("tweaks/baksmali.jar", "/system/etc/baksmali.jar");
-  set_perm(0, 0, 0777, "/system/etc/baksmali.jar");
-  set_perm(0, 0, 0777, "/system/etc/init.d/79cachescroll");
-  set_perm(0, 0, 0777, "/system/etc/smali.jar");
-  ui_print("Enhancing Build.prop");
-  show_progress(0.3, "-3000");
-  run_program("/tmp/aroma/sleep","3000");
-endif;
-set_progress(0.9);
-
 
 
 ui_print("@ Installer is checking and configuring your requests please standby for 30 seconds....");
