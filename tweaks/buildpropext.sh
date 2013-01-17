@@ -3,8 +3,8 @@
 
 mount -o rw,remount /system
 echo "#Grpahics & performances tweaks" >> /system/build.prop
-echo "debug.sf.hw = 1" >> /system/build.prop
-echo "debug.composition.type = c2d" >> /system/build.prop
+echo "debug.composition.type=cpu" >> /system/build.prop
+echo "debug.composition.type=gpu" >> /system/build.prop
 echo "debug.enabletr = true" >> /system/build.prop
 echo "debug.qctwa.preservebuf = 1" >> /system/build.prop
 echo "ro.sf.compbypass.enable=1" >> /system/build.prop
@@ -15,9 +15,7 @@ echo "persist.sys.use_16bpp_alpha=1" >> /system/build.prop
 echo "debug.performance.tuning=1" >> /system/build.prop
 echo "persist.sys.use_dithering=0" >> /system/build.prop
 echo "persist.sys.ui.hw=1" >> /system/build.prop
-echo "windowsmgr.max_events_per_sec=1000" >> /system/build.prop
-echo "ro.max.fling_velocity=10000" >> /system/build.prop
-echo "ro.min.fling_velocity=6000" >> /system/build.prop
+echo "windowsmgr.max_events_per_sec=300" >> /system/build.prop
 echo "#Media quality improvements" >> /system/build.prop
 echo "ro.media.enc.jpeg.quality=100" >> /system/build.prop
 echo "ro.media.dec.jpeg.memcap=8000000" >> /system/build.prop
@@ -38,7 +36,7 @@ echo "persist.android.strictmode=0" >> /system/build.prop
 echo "debug.gr.swapinterval=0" >> /system/build.prop
 echo "persist.android.strictmode=0" >> /system/build.prop
 echo "persist.sampling_profiler=0" >> /system/build.prop
-echo "ENFORCE_PROCESS_LIMIT=false" >> /system/build.prop
+echo "enforce_process_limit=false" >> /system/build.prop
 echo "ro.min_pointer_dur=1" >> /system/build.prop
 echo "ro.telephony.call_ring.delay=0" >> /system/build.prop
 echo "ro.sec.proximity.delay=0" >> /system/build.prop
