@@ -62,5 +62,6 @@ echo "min_crash_interval=false" >> /system/build.prop
 echo "ro.config.hw_power_saving=true" >> /system/build.prop
 echo "ro.mot.eri.losalert.delay=100000" >> /system/build.prop
 echo "persist.ril.uart.flowctrl=90" >> /system/build.prop 
-mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
-done
+mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak;
+
+done;
