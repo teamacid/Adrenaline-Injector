@@ -1,11 +1,8 @@
 #!/system/bin/sh
-#Remove buildpropext script for no overflow on buildprop
-
-busybox mount -o remount,noatime,nodiratime,nodelalloc,commit=900,noauto_da_alloc,barrier=0 /system
+#Clean up one time scripts
 
 
-rm /system/etc/init.d/74buildproprm
-
+./system/etc/clean.sh
 
 
 
