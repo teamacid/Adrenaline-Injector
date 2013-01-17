@@ -8,19 +8,8 @@ VAR=$(ls -d /dev/block/vold/* | tail -1)
 echo $VAR
 
 
+mount -t vfat -o umask=0000 $VAR /storage/sdcard0 
 
-# Look for /mnt or /storage
-if (find /storage -name sdcard0); then
+mount -o bind /data/media /storage/sdcard0   
 
-mount -t vfat -o umask=0000 $VAR storage/sdcard0 
-
-mount -o bind /data/media /storage/sdcard1   
-fi
-
-if (find /mnt -name extSdCard); then
-
-mount -t fat -o unmask=0000 $VAR mnt/sdcard
-
-mount -o bind /data/media /mnt/extSdCard
-fi
 
