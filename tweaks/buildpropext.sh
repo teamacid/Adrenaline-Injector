@@ -44,26 +44,25 @@ echo "ro.telephony.call_ring.delay=0" >> /system/build.prop
 echo "ro.sec.proximity.delay=0" >> /system/build.prop
 echo "persist.service.pcsync.enable=0" >> /system/build.prop
 echo "persist.service.lgospd.enable=0" >> /system/build.prop
-echo "ENFORCE_PROCESS_LIMIT=false" >> /system/build.prop
-echo "MAX_SERVICE_INACTIVITY=false" >> /system/build.prop
-echo "MIN_HIDDEN_APPS=false" >> /system/build.prop
-echo "MAX_HIDDEN_APPS=false" >> /system/build.prop
-echo "CONTENT_APP_IDLE_OFFSET=false" >> /system/build.prop
-echo "EMPTY_APP_IDLE_OFFSET=false" >> /system/build.prop
-echo "MAX_ACTIVITIES=false" >> /system/build.prop
-echo "ACTIVITY_INACTIVE_RESET_TIME=false" >> /system/build.prop
-echo "MAX_RECENT_TASKS=false" >> /system/build.prop
-echo "MIN_RECENT_TASKS=false" >> /system/build.prop
-echo "APP_SWITCH_DELAY_TIME=false" >> /system/build.prop
-echo "MAX_PROCESSES=false" >> /system/build.prop
-echo "PROC_START_TIMEOUT=false" >> /system/build.prop
-echo "CPU_MIN_CHECK_DURATION=false" >> /system/build.prop
-echo "GC_TIMEOUT=false" >> /system/build.prop
-echo "SERVICE_TIMEOUT=false" >> /system/build.prop
-echo "MIN_CRASH_INTERVAL=false" >> /system/build.prop
+echo "enforce_process_limit=false" >> /system/build.prop
+echo "max_service_inactivity=false" >> /system/build.prop
+echo "min_hidden_apps=false" >> /system/build.prop
+echo "max_hidden_apps=false" >> /system/build.prop
+echo "content_app_idle_offset=false" >> /system/build.prop
+echo "empty_app_idle_offset=false" >> /system/build.prop
+echo "max_activities=false" >> /system/build.prop
+echo "activity_inactive_reset_time=false" >> /system/build.prop
+echo "max_recent_tasks=false" >> /system/build.prop
+echo "min_recent_tasks=false" >> /system/build.prop
+echo "app_switch_delay_time=false" >> /system/build.prop
+echo "max_processes=false" >> /system/build.prop
+echo "proc_start_timeout=false" >> /system/build.prop
+echo "cpu_min_check_duration=false" >> /system/build.prop
+echo "gc_timeout" >> /system/build.prop
+echo "service_timeout=false" >> /system/build.prop
+echo "min_crash_interval=false" >> /system/build.prop
 echo "ro.config.hw_power_saving=true" >> /system/build.prop
 echo "ro.mot.eri.losalert.delay=100000" >> /system/build.prop
 echo "persist.ril.uart.flowctrl=90" >> /system/build.prop 
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak
 done
-
