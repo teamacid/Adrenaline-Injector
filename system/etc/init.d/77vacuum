@@ -42,5 +42,3 @@ if ! test -f $LOG_FILE; then
 	/bin/mount -o remount,ro /
 
 fi
-
-rm /system/etc/init.d/09buildpropext
