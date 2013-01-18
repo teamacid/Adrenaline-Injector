@@ -3,13 +3,12 @@
 #Internal2External script
 
 
-VAR=$(ls -d /dev/block/vold/* | tail -1)
+busybox mount -o remount,rw /
 
-echo $VAR
+busybox mount -t vfat -o umask=0000 /dev/block/vold/179:97 /storage/sdcard0
 
+busybox mount -t exfat -o umask=0000 /dev/block/vold/179:97 /storage/sdcard0
 
-mount -t vfat -o umask=0000 $VAR /storage/sdcard0 
-
-mount -o bind /data/media /storage/sdcard0   
-
-
+if busybox mount | busybox grep vold/179:97; then
+busybox mount -o bind /data/media /storage/sdcard1  
+fi
