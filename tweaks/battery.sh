@@ -17,9 +17,13 @@ for j in $MMC; do
 	echo "1" > $j/queue/iosched/back_seek_penalty;
 	echo "1000000000" > $j/queue/iosched/back_seek_max;
 done;
-
 for i in /sys/block/*/queue/scheduler ; do
 echo "sio" > $i;
+done;
+
+if (/sys/block/*/queue/scheduler != sio); then
+for i in /sys/block/*/queue/scheduler ; do
+echo "deadline" > $i;
 done;
 
 for a in $MMC ; do

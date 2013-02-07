@@ -1,8 +1,6 @@
 #!/system/bin/sh
 #created by Team Acid
 
-./system/etc/multicore.sh
-
 timeout=100000
 
 while : ; do
@@ -14,8 +12,6 @@ while : ; do
 		echo "1" > /sys/devices/system/cpu/cpu1/online
 endif;
 
-
-
 sleep=(cat /sys/power/wait_for_fb_sleep)
 
     if ($sleep = "sleeping"); then
@@ -24,5 +20,28 @@ sleep=(cat /sys/power/wait_for_fb_sleep)
 		echo "0" > /sys/devices/system/cpu/cpu1/online
 endif;
 		
+    if (find /sys/devices/system/cpu -name cpu2); then
+	    if ($awake = "awake"); then
+		usleep $timeout
+		echo "1" > /sys/devices/system/cpu/cpu2/online
+endif;
+
+    if (find /sys/devices/system/cpu -name cpu2); then
+	    if ($sleep = "sleeping"); then
+		usleep $timeout
+		echo "0" > /sys/devices/system/cpu/cpu2/online
+endif;
+
+    if (find /sys/devices/system/cpu -name cpu2); then
+	    if ($awake = "awake"); then
+		usleep $timeout
+		echo "1" > /sys/devices/system/cpu/cpu2/online
+endif;
+
+    if (find /sys/devices/system/cpu -name cpu3); then
+	    if ($sleep = "sleeping"); then
+		usleep $timeout
+		echo "0" > /sys/devices/system/cpu/cpu3/online
+endif;
 
 

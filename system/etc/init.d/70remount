@@ -1,40 +1,21 @@
 #!/system/bin/sh
 #Adrenaline by Team Acid
 
-
-# Allow configuring of both cores
-echo "1" > /sys/devices/system/cpu/cpu0/online;
-echo "1" > /sys/devices/system/cpu/cpu1/online;
+sys=$(find /dev/block/platform -name system)
+dat=$(find /dev/block/platform -name data)
+udat=$(find /dev/block/platform -name userdata)
+cac=$(find /dev/block/platform -name cache)
 
 # Remount each file system with noatime and nodiratime flags to save battery and CPU cycles
 
-mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noatime,noauto_da_alloc,barrier=0 /system
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noatime,noauto_da_alloc,barrier=0 $sys
 
-mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /data
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 $dat
 
-mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 /cache
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 $udat
 
+mount -o remount,noatime,nodelalloc,nodiratime,commit=900,noauto_da_alloc,barrier=0 $cac
 
-# Scheduler Tweaks for performance and battery 
-
-
-MMC=`ls -d /sys/block/mmc*`;
-for q in $MMC
-do
-#	echo "deadline" > $q/queue/scheduler;
-#	echo "512" > $q/queue/read_ahead_kb;
-	echo "0" > $q/queue/rotational;
-	echo "1" > $q/queue/iosched/fifo_batch;
-	echo "1" > $q/queue/iosched/low_latency;
-	echo "1" > $q/queue/iosched/back_seek_penalty;
-	echo "1000000000" > $q/queue/iosched/back_seek_max;
-	echo "3" > $q/queue/iosched/slice_idle; 
-	echo "16" > $q/queue/iosched/quantum
-	echo "512" > $q/queue/nr_requests;
-done
-
-#Sdcard read ahead
-echo "4096" > /sys/devices/virtual/bdi/179:0/read_ahead_kb; 
 
 # Kernel Tweaks
 #
