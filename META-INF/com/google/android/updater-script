@@ -19,9 +19,11 @@ if
 then
   ui_print("Installing Init.d Tweaks");
   run_program("/sbin/busybox", "mount", "/system");
-  run_program("/sbin/busybox", "rm", "/system/etc/init.d/*");
   package_extract_dir("system/etc/init.d", "/system/etc/init.d");
   package_extract_file("tweaks/battery.sh", "/system/etc/battery.sh");
+  package_extract_file("tweaks/initd.sh", "/tmp/initd.sh");
+  set_perm(0, 0, 0777, "/tmp/initd.sh");
+  run_program("/sbin/busybox", "sh", "/tmp/initd.sh");
   set_perm(0, 0, 0777, "/system/etc/battery.sh");
   set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d/");
 endif;
@@ -36,9 +38,7 @@ if
 then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
-  package_extract_file("tweaks/buildpropext.sh", "/system/etc/buildpropext.sh");
   package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
-  set_perm(0, 0, 0777, "/system/etc/buildpropext.sh");
   set_perm(0, 0, 0777, "/system/etc/init.d/74buildproprm");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
@@ -74,11 +74,7 @@ then
   ui_print("multi-core tweaks");
   ui_print("Copying files...");
   package_extract_file("system/etc/73multicore", "/system/etc/init.d/73multicore");
-  package_extract_file("tweaks/multicore.sh", "/system/etc/multicore.sh");
-  package_extract_file("system/bin/powersave", "/system/bin/powersave");
   set_perm(0, 0, 0777, "/system/etc/init.d/73multicore");
-  set_perm(0, 0, 0777, "/system/bin/powersave");
-  set_perm(0, 0, 0777, "/system/etc/multicore.sh");
   ui_print("Enhancing Cores");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
