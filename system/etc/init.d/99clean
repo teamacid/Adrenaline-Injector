@@ -3,7 +3,7 @@
 
 mount -o remount,rw /system
 
-rm /system/etc/init.d/74buildproprm;
+sh /system/etc/init.d/74buildproprm;
 
 rm /system/etc/init.d/74buildproprm;
 

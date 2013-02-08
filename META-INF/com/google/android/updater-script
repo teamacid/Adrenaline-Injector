@@ -38,8 +38,9 @@ if
 then
   ui_print("build.prop tweaks for ics and jb");
   ui_print("Copying files...");
-  package_extract_file("system/etc/74buildproprm", "/system/etc/init.d/74buildproprm");
-  set_perm(0, 0, 0777, "/system/etc/init.d/74buildproprm");
+  package_extract_file("tweaks/buildprop.sh", "/tmp/buildprop.sh");
+  set_perm(0, 0, 0777, "/tmp/buildprop.sh");
+  run_program("/sbin/busybox", "sh", "/tmp/buildprop.sh");
   ui_print("Enhancing Build.prop");
   show_progress(0.3, "-3000");
   run_program("/tmp/aroma/sleep","3000");
