@@ -1,7 +1,9 @@
 #!/system/bin/sh
 #Build.prop tweaks
 
-mount -o rw,remount /system
+sys=$(find /dev/block/platform -name system)
+
+mount -o rw,remount $sys
 
 echo "#Grpahics & performances tweaks" >> /system/build.prop;
 echo "debug.composition.type=cpu" >> /system/build.prop;
@@ -64,7 +66,6 @@ echo "ro.config.hw_power_saving=true" >> /system/build.prop;
 echo "ro.mot.eri.losalert.delay=100000" >> /system/build.prop;
 echo "persist.ril.uart.flowctrl=90" >> /system/build.prop; 
 echo "#Additional Tweaks" >> /system/build.prop;
-echo "debug.composition.type=gpu" >> /system/build.prop;
 echo "ro.secure=0" >> /system/build.prop;
 echo "dalvik.vm.verify-bytecode=false" >> /system/build.prop;
 echo "dalvik.vm.dexpot-data-only=1" >> /system/build.prop;
@@ -73,4 +74,7 @@ echo "ro.min_pointer_dur=1" >> /system/build.prop;
 echo "dalvik.vm.execution-mode=int:jit" >> /system/build.prop;
 echo "ro.HOME_APP_MEM=4096" >> /system/build.prop;
 mv /system/lib/egl/libGLES_android.so /system/lib/egl/libGLES_android.so.bak;
+
 done;
+
+mount -o remount,ro $sys

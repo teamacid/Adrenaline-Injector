@@ -21,7 +21,7 @@ for i in /sys/block/*/queue/scheduler ; do
 echo "sio" > $i;
 done;
 
-if (/sys/block/*/queue/scheduler != sio); then
+if (cat /sys/block/*/queue/scheduler != sio); then
 for i in /sys/block/*/queue/scheduler ; do
 echo "deadline" > $i;
 done;
